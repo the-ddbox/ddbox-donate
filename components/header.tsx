@@ -17,6 +17,7 @@ const Header = () => {
           <Image
             className="object-cover"
             src={user.coverImage}
+            placeholder="blur"
             fill
             alt={`Cover Image for ${user.name}`}
           />
