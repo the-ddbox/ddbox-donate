@@ -37,7 +37,9 @@ const Header = () => {
             <h1 className="sm:text-xl font-semibold line-clamp-1">
               {user.name}
             </h1>
-            <p className="text-xs sm:text-sm line-clamp-2">{user.bio}</p>
+            <p className="text-xs sm:text-sm line-clamp-2 opacity-70">
+              {user.bio}
+            </p>
           </div>
         </div>
       </div>
