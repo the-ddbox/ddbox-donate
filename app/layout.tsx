@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import Footer from '@/components/footer'
+import Header from '@/components/header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,10 +26,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col min-h-[600px]">
-            <header className="">
-              <div className="container">Header</div>
-            </header>
+          <div className="flex flex-col min-h-[calc(100vh-2*8*4px)]">
+            <Header />
             <main className="grow">{children}</main>
             <Footer />
           </div>
