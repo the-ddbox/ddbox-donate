@@ -44,14 +44,14 @@ const donateLevel = [
 const amoutGroup = {
   animate: {
     transition: {
-      staggerChildren: 0.075,
+      staggerChildren: 0.1,
     },
   },
 }
 
 const amoutItem = {
   init: { opacity: 0 },
-  animate: { opacity: 1 },
+  animate: { opacity: 1, transition: { duration: 0.5 } },
 }
 
 const Profile = () => {
@@ -68,7 +68,7 @@ const Profile = () => {
   return (
     <header className="mb-5">
       <div className="container max-sm:p-0">
-        <div className="relative aspect-[620/100] bg-gray-100 dark:bg-gray-900 sm:rounded-b-2xl overflow-hidden bg-cover bg-center">
+        <div className="relative aspect-[360/100] sm:aspect-[620/100] bg-gray-100 dark:bg-gray-900 sm:rounded-b-2xl overflow-hidden bg-cover bg-center">
           <motion.div
             className="absolute inset-0"
             style={{ y: coverMove, filter: blur, scale: scale }}
@@ -121,7 +121,7 @@ export default function Home() {
             className="rounded-lg sm:rounded-2xl p-3 sm:p-5 sm:first:odd:col-span-2 lg:first:odd:col-span-1 lg:first:odd:row-span-2 relative overflow-hidden group"
           >
             <Link
-              href={`/donate/${item.amout}`}
+              href={`#`}
               className="relative h-full z-20 flex items-center justify-between"
             >
               <div>
