@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-TW">
-      <body className={`${inter.className} py-8`}>
+      <body className={`${inter.className} pb-8`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
