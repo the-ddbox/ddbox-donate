@@ -18,6 +18,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 const user = {
   coverImage: "coverimage.jpg",
@@ -52,6 +65,53 @@ const user = {
     },
   ],
 };
+
+const donatePlatform = [
+  {
+    title: "綠界",
+    color: "#22c55e",
+  },
+  {
+    title: "歐付寶",
+    color: "#00a2e8",
+  },
+  {
+    title: "藍新",
+    color: "#0e7490",
+  },
+  {
+    title: "街口",
+    color: "#e11d48",
+  },
+  {
+    title: "Paypal",
+    color: "#009cde",
+  },
+  {
+    title: "統一支",
+    color: "#f43f5e",
+  },
+  {
+    title: "玉山",
+    color: "#14b8a6",
+  },
+  {
+    title: "國泰",
+    color: "#f68d2e",
+  },
+  {
+    title: "橘子支",
+    color: "#f97316",
+  },
+  {
+    title: "LINE PAY",
+    color: "#22c55e",
+  },
+  {
+    title: "TAIWAN PAY",
+    color: "#009cde",
+  },
+];
 
 const donateLevel = [
   {
@@ -211,7 +271,7 @@ const FAQ = () => {
           <AccordionItem
             key={id}
             value={item.question}
-            className="hover:bg-gray-200/40 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100
+            className="hover:bg-gray-200/40 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 dark:border-gray-700/80 border-b border-gray-200/40 transition duration-200 text-base sm:text-lg
             max-sm:text-sm"
           >
             <AccordionTrigger>{item.question}</AccordionTrigger>
@@ -237,20 +297,51 @@ const Donate = () => {
           variants={amoutItem}
           className="rounded-lg sm:rounded-2xl p-3 sm:p-5 sm:first:odd:col-span-2 lg:first:odd:col-span-1 lg:first:odd:row-span-2 relative overflow-hidden group"
         >
-          <Link
-            href={`#`}
-            className="relative h-full z-20 flex items-center justify-between"
-          >
-            <div>
-              <h2 className="text-base sm:text-2xl lg:text-3xl font-semibold">
-                {item.amout}
-              </h2>
-              <p className="text-sm sm:text-base opacity-70 group-hover:opacity-90">
-                {item.title}
-              </p>
-            </div>
-            <ChevronRight className="[--size:20px] sm:[--size:30px] h-[--size] w-[--size] opacity-20 transition group-hover:opacity-100 group-hover:translate-x-1" />
-          </Link>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="relative w-full text-left h-full z-20 flex items-center justify-between">
+                <div>
+                  <h2 className="text-base sm:text-2xl lg:text-3xl font-semibold">
+                    {item.amout}
+                  </h2>
+                  <p className="text-sm sm:text-base opacity-70 group-hover:opacity-90">
+                    {item.title}
+                  </p>
+                </div>
+                <ChevronRight className="[--size:20px] sm:[--size:30px] h-[--size] w-[--size] opacity-20 transition group-hover:opacity-100 group-hover:translate-x-1" />
+              </button>
+            </DialogTrigger>
+
+            <DialogContent className="[--margin:20px] overflow-y-auto max-h-[calc(100vh-var(--margin)*2)]">
+              <DialogHeader>
+                <DialogTitle>確認贊助細節</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-3">
+                <Input
+                  id="name"
+                  placeholder="請輸入您的姓名"
+                  className="col-span-3"
+                />
+                <Textarea id="message" placeholder="請輸入您的留言" />
+              </div>
+              <DialogDescription>
+                <Label>請選擇這 NT${item.amout} 要使用什麼金流贊助？</Label>
+              </DialogDescription>
+              <DialogFooter>
+                <div className="grid sm:grid-cols-2 gap-3 w-full">
+                  {donatePlatform.map((platform, id) => (
+                    <Button
+                      key={id}
+                      style={{ backgroundColor: platform.color }}
+                      className="text-white"
+                    >
+                      {platform.title}
+                    </Button>
+                  ))}
+                </div>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
           <div
             className={`absolute rounded-lg sm:rounded-2xl inset-0 z-10 opacity-0 group-hover:opacity-30 
               ring-black/30 dark:ring-white/70 ring-inset ring-4 transition duration-500 pointer-events-none`}
