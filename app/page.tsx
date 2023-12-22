@@ -235,15 +235,15 @@ const FAQ = () => {
     {
       question: "這是什麼樣的系統？",
       answer:
-        "我們這是新型簡約設計的贊助系統，可以對接多種支付方式。未來還可以連線我們公司其餘的系統服務。",
+        "這是 DDBOX 新型簡約設計的贊助系統，可以對接多種支付方式。未來還可以連線 DDBOX 其餘的系統服務。",
     },
     {
       question: "這個系統需要付費嗎？",
       answer:
-        "我們的系統有基本功能免費使用，欲使用進階功能可以訂閱我們的服務進行使用。",
+        "DDBOX 的系統有基本功能免費使用，欲使用進階功能可以訂閱 DDBOX 的服務進行使用。",
     },
     {
-      question: "支援哪些金流服務？",
+      question: "DDBOX 支援哪些金流服務？",
       answer:
         "綠界、歐付寶、藍新、統一金流、與特殊的第三方支付單位，未來會新增更多的金流服務。",
     },
@@ -271,7 +271,7 @@ const FAQ = () => {
           <AccordionItem
             key={id}
             value={item.question}
-            className="hover:bg-gray-200/40 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 dark:border-gray-700/80 border-b border-gray-200/40 transition duration-200 text-base sm:text-lg
+            className="hover:bg-gray-200/40 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 dark:border-gray-700/80 border-b border-gray-200/40 transition duration-200 text-sm
             max-sm:text-sm"
           >
             <AccordionTrigger>{item.question}</AccordionTrigger>
@@ -317,15 +317,25 @@ const Donate = () => {
                 <DialogTitle>確認贊助細節</DialogTitle>
               </DialogHeader>
               <div className="space-y-3">
+                <h2 className="text-center bg-slate-100 dark:bg-slate-900 rounded-lg p-5">
+                  <span className="text-sm">贊助{user.name}</span>
+                  <br />
+                  <span className="font-bold">
+                    <span className="text-3xl font-medium">
+                      NT${item.amout}
+                    </span>{" "}
+                    元
+                  </span>
+                </h2>
                 <Input
                   id="name"
                   placeholder="請輸入您的姓名"
                   className="col-span-3"
                 />
-                <Textarea id="message" placeholder="請輸入您的留言" />
+                <Textarea rows={5} id="message" placeholder="請輸入您的留言" />
               </div>
               <DialogDescription>
-                <Label>請選擇這 NT${item.amout} 要使用什麼金流贊助？</Label>
+                <Label>請選擇要使用什麼金流贊助？</Label>
               </DialogDescription>
               <DialogFooter>
                 <div className="grid sm:grid-cols-2 gap-3 w-full">
