@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { ChevronRight } from "lucide-react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Balancer from "react-wrap-balancer";
@@ -365,7 +365,31 @@ const Donate = () => {
   );
 };
 
+const Api = () => {
+  useEffect(() => {
+      fetch("http://10.0.1.237:57700/api/v1/donate/web/AA")
+      .then((res) => res.json())
+      .then((data) => {
+        //user
+        user.coverImage = data.data.coverUrl
+        user.profilePicture = data.data.avatarUrl
+        user.name = data.data.name
+        user.bio = data.data.description
+        user.links = data.data.links
+
+        // donatePlatform.map(data.data.donatePlatform.map( it=> {
+        //   return {
+        //      'title': it.valuel,
+        //      'color': it.labell,
+        //    }
+        // }));
+        // donateLevel.map(data.data.fixedAmounts)
+        console.log(data);
+      })},[])
+}
+
 export default function Home() {
+  Api()
   return (
     <div className="space-y-3 sm:space-y-5">
       <Profile />
