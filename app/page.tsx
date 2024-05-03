@@ -367,15 +367,15 @@ const Donate = () => {
 
 const Api = () => {
   useEffect(() => {
-      fetch("http://10.0.1.237:57700/api/v1/donate/web/AA")
+    fetch("http://220.133.95.63:57700/api/v1/donate/web/AA")
       .then((res) => res.json())
       .then((data) => {
         //user
-        user.coverImage = data.data.coverUrl
-        user.profilePicture = data.data.avatarUrl
-        user.name = data.data.name
-        user.bio = data.data.description
-        user.links = data.data.links
+        user.coverImage = data.data.coverUrl;
+        user.profilePicture = data.data.avatarUrl;
+        user.name = data.data.name;
+        user.bio = data.data.description;
+        user.links = data.data.links;
 
         // donatePlatform.map(data.data.donatePlatform.map( it=> {
         //   return {
@@ -385,11 +385,12 @@ const Api = () => {
         // }));
         // donateLevel.map(data.data.fixedAmounts)
         console.log(data);
-      })},[])
-}
+      });
+  }, []);
+};
 
 export default function Home() {
-  Api()
+  Api();
   return (
     <div className="space-y-3 sm:space-y-5">
       <Profile />
