@@ -1,4 +1,4 @@
-import { Data } from "@/types";
+import { FixedAmount, DataType } from "@/types";
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import {
@@ -105,46 +105,48 @@ const amoutItem = {
   animate: { opacity: 1, transition: { duration: 0.5 } },
 };
 
-const Donate = ({ user }: { user: Data }) => {
+const Donate = ({
+  user,
+  donateLevel,
+}: {
+  user: DataType;
+  donateLevel: FixedAmount[];
+}) => {
   return (
     <motion.div
       initial="init"
       animate="animate"
       variants={amoutGroup}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 container gap-3 sm:gap-5"
+      className="container grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3"
     >
       {donateLevel.map((item, id) => (
-        <motion.div
-          key={id}
-          variants={amoutItem}
-          className="rounded-lg sm:rounded-2xl p-3 sm:p-5 sm:first:odd:col-span-2 lg:first:odd:col-span-1 lg:first:odd:row-span-2 relative overflow-hidden group"
-        >
+        <motion.div key={id} variants={amoutItem}>
           <Dialog>
             <DialogTrigger asChild>
-              <button className="relative w-full text-left h-full z-20 flex items-center justify-between">
+              <button className="group relative z-20 flex h-full w-full items-center justify-between overflow-hidden rounded-lg p-3 text-left sm:rounded-2xl sm:p-5 sm:first:odd:col-span-2 lg:first:odd:col-span-1 lg:first:odd:row-span-2">
                 <div>
-                  <h2 className="text-base sm:text-2xl lg:text-3xl font-semibold">
-                    {item.amout}
+                  <h2 className="text-base font-semibold sm:text-2xl lg:text-3xl">
+                    {item.money}
                   </h2>
-                  <p className="text-sm sm:text-base opacity-70 group-hover:opacity-90">
-                    {item.title}
+                  <p className="text-sm opacity-70 group-hover:opacity-90 sm:text-base">
+                    {item.name}
                   </p>
                 </div>
-                <ChevronRight className="[--size:20px] sm:[--size:30px] h-[--size] w-[--size] opacity-20 transition group-hover:opacity-100 group-hover:translate-x-1" />
+                <ChevronRight className="h-[--size] w-[--size] opacity-20 transition [--size:20px] group-hover:translate-x-1 group-hover:opacity-100 sm:[--size:30px]" />
               </button>
             </DialogTrigger>
 
-            <DialogContent className="[--margin:20px] overflow-y-auto max-h-[calc(100vh-var(--margin)*2)]">
+            <DialogContent className="max-h-[calc(100vh-var(--margin)*2)] overflow-y-auto [--margin:20px]">
               <DialogHeader>
                 <DialogTitle>確認贊助細節</DialogTitle>
               </DialogHeader>
               <div className="space-y-3">
-                <h2 className="text-center bg-slate-100 dark:bg-slate-900 rounded-lg p-5">
+                <h2 className="rounded-lg bg-slate-100 p-5 text-center dark:bg-slate-900">
                   <span className="text-sm">贊助{user.name}</span>
                   <br />
                   <span className="font-bold">
                     <span className="text-3xl font-medium">
-                      NT${item.amout}
+                      NT${item.money}
                     </span>{" "}
                     元
                   </span>
@@ -160,7 +162,7 @@ const Donate = ({ user }: { user: Data }) => {
                 <Label>請選擇要使用什麼金流贊助？</Label>
               </DialogDescription>
               <DialogFooter>
-                <div className="grid sm:grid-cols-2 gap-3 w-full">
+                <div className="grid w-full gap-3 sm:grid-cols-2">
                   {donatePlatform.map((platform, id) => (
                     <Button
                       key={id}
@@ -175,11 +177,11 @@ const Donate = ({ user }: { user: Data }) => {
             </DialogContent>
           </Dialog>
           <div
-            className={`absolute rounded-lg sm:rounded-2xl inset-0 z-10 opacity-0 group-hover:opacity-30 
-                ring-black/30 dark:ring-white/70 ring-inset ring-4 transition duration-500 pointer-events-none`}
+            className={`pointer-events-none absolute inset-0 z-10 rounded-lg opacity-0 ring-4 
+                ring-inset ring-black/30 transition duration-500 group-hover:opacity-30 dark:ring-white/70 sm:rounded-2xl`}
           />
           <div
-            className={`absolute rounded-lg sm:rounded-2xl inset-0 z-0 opacity-30 group-hover:opacity-70 group-hover:border dark:group-hover:opacity-50 ${item.color} transition duration-500 pointer-events-none`}
+            className={`absolute inset-0 z-0 rounded-lg opacity-30 group-hover:border group-hover:opacity-70 dark:group-hover:opacity-50 sm:rounded-2xl ${item.color} pointer-events-none transition duration-500`}
           />
         </motion.div>
       ))}

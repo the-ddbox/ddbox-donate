@@ -10,15 +10,15 @@ export default function Home({ params }: { params: { slug: string } }) {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data, error } = useSWR(apiUrl, fetcher);
 
+  if (!data) return <div>Loading...</div>;
   if (!data || !data.success) return <div>使用者不存在</div>;
   if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
 
   return (
     <div className="space-y-3 sm:space-y-5">
       <Profile user={data.data} />
       <Links links={data.data.links} />
-      {/* <Donate donate={data.data.fixedAmounts} /> */}
+      <Donate user={data.data} donateLevel={data.data.fixedAmounts} />
       <FAQ />
     </div>
   );
