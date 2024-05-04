@@ -27,11 +27,11 @@ const Icon = ({ name, className }: { name: string; className: string }) => {
   }
 };
 
-const Links = ({ link }: { link: LinkType }) => {
+const Links = ({ links }: { links: LinkType[] }) => {
   return (
     <div className="container">
       <div className="flex flex-col sm:flex-row justify-center rounded-lg sm:rounded-2xl overflow-hidden bg-gray-50 dark:bg-gray-900">
-        {link.map((link, id) => (
+        {links.map((link, id) => (
           <Link
             key={id}
             href={link.url}
