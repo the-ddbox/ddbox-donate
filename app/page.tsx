@@ -1,4 +1,10 @@
-const page = () => {
-  return <div>Home</div>;
+import Skeleton from "@/components/user/skeleton";
+
+const Home = () => {
+  return (
+    <div>
+      <Skeleton />
+    </div>
+  );
 };
-export default page;
+export default Home;

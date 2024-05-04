@@ -64,34 +64,6 @@ const donatePlatform = [
   },
 ];
 
-const donateLevel = [
-  {
-    amout: "100",
-    title: "小額贊助",
-    color: "bg-lime-300",
-  },
-  {
-    amout: "500",
-    title: "中額贊助",
-    color: "bg-emerald-300",
-  },
-  {
-    amout: "1,000",
-    title: "大額贊助",
-    color: "bg-cyan-300",
-  },
-  {
-    amout: "5,000",
-    title: "超大額贊助",
-    color: "bg-fuchsia-300",
-  },
-  {
-    amout: "10,000",
-    title: "超級大額贊助",
-    color: "bg-rose-300",
-  },
-];
-
 const amoutGroup = {
   animate: {
     transition: {
@@ -120,10 +92,14 @@ const Donate = ({
       className="container grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3"
     >
       {donateLevel.map((item, id) => (
-        <motion.div key={id} variants={amoutItem}>
+        <motion.div
+          key={id}
+          variants={amoutItem}
+          className="group relative overflow-hidden rounded-lg p-3 sm:rounded-2xl sm:p-5"
+        >
           <Dialog>
             <DialogTrigger asChild>
-              <button className="group relative z-20 flex h-full w-full items-center justify-between overflow-hidden rounded-lg p-3 text-left sm:rounded-2xl sm:p-5 sm:first:odd:col-span-2 lg:first:odd:col-span-1 lg:first:odd:row-span-2">
+              <button className="relative z-20 flex h-full w-full items-center justify-between text-left">
                 <div>
                   <h2 className="text-base font-semibold sm:text-2xl lg:text-3xl">
                     {item.money}
@@ -181,7 +157,8 @@ const Donate = ({
                 ring-inset ring-black/30 transition duration-500 group-hover:opacity-30 dark:ring-white/70 sm:rounded-2xl`}
           />
           <div
-            className={`absolute inset-0 z-0 rounded-lg opacity-30 group-hover:border group-hover:opacity-70 dark:group-hover:opacity-50 sm:rounded-2xl ${item.color} pointer-events-none transition duration-500`}
+            style={{ backgroundColor: item.color }}
+            className={`pointer-events-none absolute inset-0 z-0 rounded-lg opacity-30 transition duration-500 group-hover:border group-hover:opacity-70 dark:group-hover:opacity-50 sm:rounded-2xl`}
           />
         </motion.div>
       ))}
